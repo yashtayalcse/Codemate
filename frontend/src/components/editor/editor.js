@@ -1,5 +1,5 @@
 import { EditorState } from '@codemirror/state';
-import { openSearchPanel, highlightSelectionMatches } from '@codemirror/search';
+import {highlightSelectionMatches } from '@codemirror/search';
 import { indentWithTab, history, defaultKeymap, historyKeymap } from '@codemirror/commands';
 import { foldGutter, indentOnInput, indentUnit, bracketMatching, foldKeymap, syntaxHighlighting, defaultHighlightStyle } from '@codemirror/language';
 import { closeBrackets, autocompletion, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
@@ -10,6 +10,20 @@ import { oneDark } from "@codemirror/theme-one-dark";
 
 // Language
 import { javascript } from "@codemirror/lang-javascript";
+import { cpp } from "@codemirror/lang-cpp";
+import { python } from "@codemirror/lang-python";
+import {java} from "@codemirror/lang-java";
+
+const editorTheme = EditorView.theme ( {
+  "&": {
+    height: "100%",             // Fills parent container height
+    minHeight: "200px",          // Minimum height (e.g., ~10 lines minimum space)
+    fontSize: "16px",
+  },
+  ".cm-scroller": {
+    overflow: "auto",           // Prevents continuous page expansion & adds scrollbar
+  }
+});
 
 function createEditorState(initialContents, options = {}) {
     let extensions = [
@@ -38,11 +52,14 @@ function createEditorState(initialContents, options = {}) {
             ...completionKeymap,
         ]),
         javascript(),
+        cpp(),
+        python(),
+        java(),
         syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
+        oneDark,
+        editorTheme,
+        EditorView.lineWrapping
     ];
-
-    if (options.oneDark)
-        extensions.push(oneDark);
 
     return EditorState.create({
         doc: initialContents,
@@ -54,4 +71,4 @@ function createEditorView(state, parent) {
     return new EditorView({ state, parent });
 }
 
-export { createEditorState, createEditorView, openSearchPanel };
+export { createEditorState, createEditorView };

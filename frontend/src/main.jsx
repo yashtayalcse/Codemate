@@ -5,10 +5,7 @@ import App from './App.jsx'
 import { ClerkProvider } from '@clerk/react'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    {/* provides session and user context to entire app */}
     <ClerkProvider> 
       <App />
     </ClerkProvider>
-  </StrictMode>,
 )

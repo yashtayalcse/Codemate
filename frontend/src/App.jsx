@@ -1,5 +1,5 @@
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
-import Editor from './components/editor/Editor'
+import Editor from './components/editor/Editor.jsx'
 
 export default function App(){
   return (
@@ -10,7 +10,7 @@ export default function App(){
         </Show>
         <Show when="signed-in">
           <div className="flex justify-end my-2"><UserButton /></div>
-          <Editor className=""/>
+          <Editor/>
         </Show>
       </header>
     </>
