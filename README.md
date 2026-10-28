@@ -39,11 +39,13 @@ Editor updates follow a client-server-client event cycle:
 3. The Express Socket server broadcasts the updated code buffer to room members except the original sender to prevent input echo loops.
 4. User B’s local editor updates its document state upon receiving the event.
 
-- [User A Types] ──> (Editor onChange) ──> Socket.emit('code-change')
--                                                   │
--                                           [Socket.IO Server]
--                                                   │
-- [User B Editor] <── Editor.setValue() <── Socket.on('code-change')
+```
+[User A Types] ──> (Editor onChange) ──> Socket.emit('code-change')
+                                                │
+                                        [Socket.IO Server]
+                                                │
+[User B Editor] <── Editor.setValue() <── Socket.on('code-change')
+```
 
 #### WebRTC & Audio Signaling
 - Socket.IO coordinates peer discovery and exchanges connection metadata (Peer IDs).
