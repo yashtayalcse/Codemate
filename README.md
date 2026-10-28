@@ -40,9 +40,9 @@ Editor updates follow a client-server-client event cycle:
 4. User B’s local editor updates its document state upon receiving the event.
 
 - [User A Types] ──> (Editor onChange) ──> Socket.emit('code-change')
-- │
-- [Socket.IO Server]
-- │
+-                                                   │
+-                                           [Socket.IO Server]
+-                                                   │
 - [User B Editor] <── Editor.setValue() <── Socket.on('code-change')
 
 #### WebRTC & Audio Signaling
