@@ -2,22 +2,19 @@ import 'dotenv/config';
 import express from 'express';
 import { createServer } from "http";
 import { Server } from "socket.io";
+import HandleClientConnection from './src/controllers/HandleClientConnection.controller.js';
 
 const options={};
 
-const app = express();
 const PORT = 3000;
+const app = express();
 const httpServer = createServer(app);
 const socketServer = new Server(httpServer,options);
 
-socketServer.on("connection", (socket) => {
-  console.log("new socket connected with id: ",socket.id);
+//express app endpoints, i will add here if any
 
-  socket.on()
-});
+socketServer.on("connection", (socket)=>HandleClientConnection(socket));
 
-app.listen(PORT, ()=>{
-  console.log(`Server is running on port ${PORT}`);
+httpServer.listen(PORT, ()=>{
+  console.log(`httpServer & socketServer are running on port ${PORT}`);
 })
-
-// socketServer.close();
