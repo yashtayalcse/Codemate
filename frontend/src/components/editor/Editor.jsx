@@ -6,8 +6,16 @@ export default function Editor(){
 
   useEffect(() => {
     if (editorRef.current) {
-      const initialState = createEditorState("\n\n\n\n\n\n\n\n\n");
+      const initialState = createEditorState("hello world"); //used to create intitial doc text and configurations
       const view = createEditorView(initialState, editorRef.current);
+      const transaction = view.state.update(
+        {
+          changes: { from: 0, to: view.state.doc.length, insert: "hello world" },
+          selection: { anchor: 0, head:1 } // Set cursor position at the start of the document
+        }
+      );
+      view.dispatch(transaction);
+      console.log(view.state.selection);
     }
   }, []);
 
