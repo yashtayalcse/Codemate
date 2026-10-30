@@ -6,7 +6,7 @@ export default function Editor(){
 
   useEffect(() => {
     if (editorRef.current) {
-      const initialState = createEditorState("hello world"); //used to create intitial doc text and configurations
+      const initialState = createEditorState(); //used to create intitial doc text and configurations
       const view = createEditorView(initialState, editorRef.current);
       const transaction = view.state.update(
         {
@@ -21,6 +21,6 @@ export default function Editor(){
 
   return (
     <div ref={editorRef}
-    className="w-full max-w-2xl h-[500px] border border-neutral-700 rounded-md overflow-hidden"></div>
+    className="w-2xl h-[500px] border border-neutral-700 rounded-md overflow-hidden"></div>
   );
 }

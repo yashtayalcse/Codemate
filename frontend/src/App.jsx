@@ -1,18 +1,17 @@
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
 import Editor from './components/editor/Editor.jsx'
+import HomePage from './components/homePage/HomePage.jsx'
+import { Route, Routes } from 'react-router'
+import Meeting from './components/meeting/Meeting.jsx'
 
 export default function App(){
   return (
     <>
-      <header className="">
-        <Show when="signed-out">
-          <SignInButton className="border-2 p-1 m-4"/>
-        </Show>
-        <Show when="signed-in">
-          <div className="flex justify-end my-2"><UserButton /></div>
-          <Editor/>
-        </Show>
-      </header>
+      <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/login" element={<SignUpButton/>}></Route>
+          <Route path="/room/:roomId" element={<Meeting/>}></Route>
+      </Routes>
     </>
   )
 }

@@ -1,3 +1,3 @@
-export default function ConnectionController(){
-  console.log("Socket connected to server.")
+export default function ConnectionController(socket){
+  console.log("Socket connected to server.",socket.connected) //true
 }
